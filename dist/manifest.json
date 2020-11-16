@@ -1,9 +1,9 @@
 {
     "manifest_version": 2,
 
-    "name": "Chrome Extension (built with TypeScript + React)",
+    "name": "QSAcT",
     "description":
-        "A boilerplate project to quickly build a Chrome extension using TypeScript and React (built using webpack).",
+        "Quick Scrap AtCoder Task",
     "version": "1.0.0",
 
     "browser_action": {
@@ -11,10 +11,16 @@
         "default_popup": "popup.html"
     },
 
-    "background": {
-        "scripts": ["js/eventPage.js"],
-        "persistent": false
-    },
+    "content_scripts": [
+        {
+          "matches": [
+            "https://atcoder.jp/contests/*"
+          ],
+          "js": [
+            "js/eventPage.js"
+          ]
+        }
+      ],
 
     "icons": {
         "16": "icon16.png",
@@ -22,5 +28,10 @@
         "128": "icon128.png"
     },
 
-    "permissions": []
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "https://scrapbox.io/api/projects"
+    ],
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }
